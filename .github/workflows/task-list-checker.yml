@@ -6,7 +6,7 @@ jobs:
   task-list-checker:
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.step1.outputs }}
+      output1: ${{ steps.step1.outputs.outstandingTasks.remaining }}
     steps:
       - id: step1
         name: Check for incomplete task list items
