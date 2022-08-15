@@ -10,3 +10,11 @@ jobs:
         uses: Shopify/task-list-checker@main
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: PR comment with reactions
+        uses: thollander/actions-comment-pull-request@v1
+        with:
+          message: |
+            Hello world ! :wave:
+          reactions: eyes, rocket
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
