@@ -4,9 +4,9 @@ on:
     types: [opened, edited, synchronize, reopened]
 jobs:
   task-list-checker:
-    outputs:
-      output: ${{ steps.step1.outputs }}
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.step1.outputs }}
     steps:
       - id: step1
         name: Check for incomplete task list items
