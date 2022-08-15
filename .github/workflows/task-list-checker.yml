@@ -3,20 +3,15 @@ on:
   pull_request:
     types: [opened, edited, synchronize, reopened]
 jobs:
-  task-list-checker:
+  task-check:
     runs-on: ubuntu-latest
-    outputs:
-      output1: ${{ steps.step1.outputs.outstandingTasks }}
     steps:
-      - id: step1
-        name: Check for incomplete task list items
-        uses: Shopify/task-list-checker@main
+      - uses: venkatsarvesh/pr-tasks-completed-action@v1.0.0
         with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-      - run: echo "${{toJSON(steps.step1.outputs)}}"
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
   notify:
-    needs: task-list-checker
+    needs: task-check
     runs-on: ubuntu-latest
     steps:
       - run: echo ${{toJSON(needs.task-list-checker.outputs)}}
